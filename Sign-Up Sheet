@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AA2</title>
+  <style>
+    .red-border {
+      border: 5px solid red;
+    }
+    .green-border {
+      border: 5px solid green;
+    }
+  </style>
+</head>
+<body>
+  <form id="signup-sheet" onsubmit="return submitData()">
+    <fieldset>
+      <legend>User Information</legend>
+      <label for="name">Name:</label><br>
+      <input type="text" id="name" onblur="changeBorderRed(this)" onfocus="changeBorderGreen(this)"><br><br>
+      
+      <label for="username">Preferred Username:</label><br>
+      <input type="text" id="username" onblur="changeBorderRed(this)" onfocus="changeBorderGreen(this)"><br><br>
+      
+      <label for="gender">Gender:</label><br>
+      <select id="gender" onblur="changeBorderRed(this)" onfocus="changeBorderGreen(this)">
+        <option value="">Select</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="prefer not to mention">Prefer not to mention</option>
+      </select><br><br>
+      
+      <label for="password">Password:</label><br>
+      <input type="password" id="password" onblur="changeBorderRed(this)" onfocus="changeBorderGreen(this)"><br><br>
+      
+      <label for="email">Email Address:</label><br>
+      <input type="email" id="email" onblur="changeBorderRed(this)" onfocus="changeBorderGreen(this)"><br><br>
+      
+      <label for="address">Address:</label><br>
+      <textarea id="address" rows="4" cols="50" onblur="changeBorderRed(this)" onfocus="changeBorderGreen(this)"></textarea><br><br>
+      
+      <label for="interest">Interests:</label><br>
+      <textarea id="interest" rows="4" cols="50" onblur="changeBorderRed(this)" onfocus="changeBorderGreen(this)"></textarea><br><br>
+    </fieldset>
+    
+    <button type="submit">Submit</button>
+    <button type="reset" onclick="resetForm()">Reset</button>
+  </form>
+
+  <div id="output"></div>
+
+  <script>
+    function changeBorderRed(inputElement) {
+      if (inputElement.value.trim() === "") {
+        inputElement.classList.add('red-border');
+        inputElement.classList.remove('green-border');
+      } else {
+        inputElement.classList.remove('red-border');
+        inputElement.classList.add('green-border');
+      }
+    }
+
+    function changeBorderGreen(inputElement) {
+      inputElement.classList.remove('red-border');
+      inputElement.classList.add('green-border');
+    }
+
+    function resetForm() {
+      document.getElementById("signup-sheet").reset();
+      document.getElementById("output").innerHTML = "";
+    }
+    
+    function submitData() {
+    var n = document.getElementById("name").value;
+    var pn = document.getElementById("username").value;
+    var g = document.getElementById("gender").value;
+    var p = document.getElementById("password").value;
+    var ea = document.getElementById("email").value;
+    var a = document.getElementById("address").value;
+    var i = document.getElementById("interest").value;
+    var output = "Name: " + n + "<br>" +
+               "Preferred Username: " + pn + "<br>" +
+               "Gender: " + g + "<br>" +
+               "Password: " + p + "<br>" +
+               "Email: " + ea + "<br>" +
+               "Address: " + a + "<br>" +
+               "Interests: " + i + "<br>";
+
+  document.getElementById("output").innerHTML = output;
+  return false;
+  }
+  </script>
+</body>
+</html>
